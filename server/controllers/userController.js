@@ -1,5 +1,7 @@
 import User from '../models/user.js';
-import emailVerification from '../models/emailVerification.js'
+import investedBikes from '../models/investedBikes.js';
+import emailVerification from '../models/emailVerification.js';
+
 import bcrypt from 'bcryptjs';
 import nodemailer from 'nodemailer';
 
@@ -10,7 +12,7 @@ let transporter = nodemailer.createTransport({
     secure: false,
     auth: {
       user: "killeryob123@gmail.com", 
-      pass: "",
+      pass: "unrujyrngcktynvc",
     },
   });
 
@@ -137,4 +139,21 @@ export const forgotPassword = async (req, res) => {
     } catch (error) {
         res.status(500).json({ message: "something went wrong!" });
     }
+}
+
+
+export const invested_Bikes = async (req, res) => {
+        const { fullName, mobileNo, bikeImage, bikeRc, insurancePaper, pucPaper, modelName, bikeAverage, bikeNumber, aboutBike } = req.body;
+
+        try {
+            const existingBike = await investedBikes.findOne({ bikeNumber });
+            if(existingBike) return res.status(404).json({ message: `bike with number ${bikeNumber} already exist in the inventory` });
+
+            const result = await investedBikes.create({ fullName, mobileNo, bikeImage, bikeRc, insurancePaper, pucPaper, modelName, bikeAverage, bikeNumber, aboutBike }); 
+
+            res.status(200).json({ message: `bike with number ${result.bikeNumber} is successfully added to the inventory`})
+
+        } catch (error) {
+            res.status(500).json({ message: "something went wrong!" });
+        }
 }

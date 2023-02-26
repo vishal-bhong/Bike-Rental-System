@@ -27,3 +27,17 @@ export const userSignup = (formData, navigate) => async (dispatch) => {
 }
 
 
+export const bikeInvestor = (formData, navigate) => async (dispatch) => {
+    try {
+        const { data } = await api.Investor(formData);
+
+        dispatch({ type: "BIKE_INVEST", data });
+        toast.success(`${data.message}`)
+        navigate('/user/dashboard');
+
+    } catch (err) {
+        console.log(err);
+        toast.error(`${err.response.data.message}`)
+    }
+}
+

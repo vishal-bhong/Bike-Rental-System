@@ -17,7 +17,7 @@ const AdminNavbar = () => {
                     <i className="bi bi-list h3" data-bs-toggle="offcanvas" data-bs-target="#offcanvas" ></i> &nbsp;
                     <span className="pt-1" data-bs-toggle="offcanvas" data-bs-target="#offcanvas">Menu</span>
                     </a>
-                    <a href="#" className="navbar-brand text-dark fw-bold" id="nav-brand">Bike_On_Rent</a>
+                    <p className="navbar-brand text-dark fw-bold" id="nav-brand">Bike_On_Rent &nbsp; &nbsp; &nbsp; ...Admin panel</p>
                     <ul className="navbar-nav">
                     <li className="navbar-item px-2">
                         <a type="button" onClick={handleLogoutNavigation} className="navbar-link text-dark text-decoration-none badge bg-danger rounded">Logout</a>

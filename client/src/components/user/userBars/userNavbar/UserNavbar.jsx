@@ -8,6 +8,13 @@ const UserNavbar = () => {
         localStorage.removeItem('userProfile')
         navigate('/user/login');
       }
+
+    const handleRentBike = () =>{
+        
+        navigate('/user/dashboard/investorForm');
+      }
+
+    
       
     return (
         <>
@@ -20,7 +27,8 @@ const UserNavbar = () => {
                     <a href="#" className="navbar-brand text-dark fw-bold" id="nav-brand"> Bike_On_Rent </a>
                     <ul className="navbar-nav">
                     
-                    <li className="navbar-item px-2">
+                    <li className="navbar-item me-3">
+                        <a type="button" onClick={handleRentBike} className="me-3 navbar-link text-dark text-decoration-none badge bg-info rounded">Rent a bike</a>
                         <a type="button" onClick={handleLogoutNavigation} className="navbar-link text-dark text-decoration-none badge bg-danger rounded">Logout</a>
                     </li>
                     </ul>

@@ -1,6 +1,6 @@
 import UserNavbar from '../userBars/userNavbar/UserNavbar';
 import UserSidebar from '../userBars/userSidebar/UserSidebar';
-import PizzaVarieties from './bikes/Bikes';
+import Bikes from './bikes/Bikes';
 
 import './user_dashboard.css'
 
@@ -21,7 +21,7 @@ const Dashboard = () => {
              <UserSidebar />
              <div className="row">
                  <div className='col-9' id='varieties_dashboard'>
-                 <PizzaVarieties />                    
+                 <Bikes />                    
                  </div>
              </div>
         </>
