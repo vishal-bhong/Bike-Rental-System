@@ -3,6 +3,9 @@ import emailVerification from '../models/emailVerification.js';
 import sec_Keys from '../models/sec_Keys.js';
 import bcrypt from 'bcryptjs';
 import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 
 let transporter = nodemailer.createTransport({
@@ -10,8 +13,8 @@ let transporter = nodemailer.createTransport({
     port: 587,
     secure: false, 
     auth: {
-      user: "killeryob123@gmail.com",
-      pass: "unrujyrngcktynvc",
+      user: process.env.SMTP_SERVER_USERNAME,
+      pass: process.env.SMTP_SERVER_PASSWORD,
     },
   });
 

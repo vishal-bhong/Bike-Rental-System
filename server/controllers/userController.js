@@ -4,6 +4,10 @@ import emailVerification from '../models/emailVerification.js';
 
 import bcrypt from 'bcryptjs';
 import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
+
+dotenv.config();
+
 
 
 let transporter = nodemailer.createTransport({
@@ -11,8 +15,8 @@ let transporter = nodemailer.createTransport({
     port: 587,
     secure: false,
     auth: {
-      user: "killeryob123@gmail.com", 
-      pass: "unrujyrngcktynvc",
+      user: process.env.SMTP_SERVER_USERNAME,
+      pass: process.env.SMTP_SERVER_PASSWORD,
     },
   });
 
@@ -138,6 +142,7 @@ export const forgotPassword = async (req, res) => {
 
     } catch (error) {
         res.status(500).json({ message: "something went wrong!" });
+        console.log(error)
     }
 }
 

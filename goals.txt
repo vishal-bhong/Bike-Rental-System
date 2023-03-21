@@ -1,0 +1,39 @@
+
+
+    1) map integration
+
+    2) inventory management ( server ) --   watching available bikes in the inventory, deleting as well as updating that bike ( open bike info on new page ),
+				     	    adding bikes in the inventory ( ui like client side with minor changes ) ( on different page ),
+					    
+					    on that page - add rectangle card with 85% width and height little more that image of bike, on clicking that card we
+					    will be navigated to the new page where we must be able to watch details related to the bike ( must show verified tag on the bike ),
+					    ( if the bike is not verified then it should not be shown on user interface )
+					    
+
+					    details related to the bike - all info about bike, all info about owner of the bike including img he provided, on clicking
+					    on the img the modal will shown showing the img, 
+					    ( add fields like bike history with company like - total km running for company, avg. with company, maintainece record rating 1 to 10 ) 
+
+					    the fields we can update must be present with deactivated input field, so that we can update that fields when admin click
+					    update button.
+
+					    on that special page for bike  -  the buttons for delete and update the bike will be there.
+
+
+    3) booking bike ( client side  ) --     select bike, add payment ( razor pay ), place booking. 
+
+
+    4) on server side dashboard --   *  map integration
+				     *  active users who booked bikes  ( verticle rectangle on right side )
+
+
+
+
+
+( in future we can add machine learning to verify bike )     - server side
+
+( to show bikes to verify it can be sorted using algorithms )	- server side
+
+( algorithms can be used to sort the bikes based on the history with company to show on client side ) - server side 
+
+( use algorithm to filter the bikes based on previous bookings by the user, use values like bike brand, bike avg, bike power )  -  server side

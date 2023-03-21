@@ -1,0 +1,8 @@
+#map {
+    margin: 12px 30px 0 10px;
+    background-color: white;
+    max-width: 100%;
+    max-height: 348px;
+    min-height: 348px;
+    box-shadow: 0 0 12px;
+}
