@@ -12,7 +12,7 @@
 
 					    details related to the bike - all info about bike, all info about owner of the bike including img he provided, on clicking
 					    on the img the modal will shown showing the img, 
-					    ( add fields like bike history with company like - total km running for company, avg. with company, maintainece record rating 1 to 10 ) 
+					    ( add fields like bike history with company like - total km running for company, avg. with company, maintenance record rating 1 to 10 ) 
 
 					    the fields we can update must be present with deactivated input field, so that we can update that fields when admin click
 					    update button.

@@ -10,6 +10,8 @@ import AdminSignup from './components/admin/admin_signup/AdminSignup';
 import AdminDashboard from './components/admin/admin_dashboard/AdminDashboard'
 import MyOrders from './components/user/user_dashboard/my_orders/MyOrders';
 import InvestorForm from './components/user/Investor_module/investorForm';
+import Inventory from './components/admin/admin_inventory/Inventory';
+import ItemDetails from './components/admin/admin_inventory/inventory_item/item_details/itemDetails';
 
 
 function App() {
@@ -26,7 +28,9 @@ function App() {
                
            <Route path="/admin/login" element={<AdminLogin />} />           
            <Route path="/admin/signup" element={<AdminSignup />} />           
-           <Route path="/admin/dashboard" element={<AdminDashboard />} />       
+           <Route path="/admin/dashboard" element={<AdminDashboard />} />
+           <Route path="/admin/inventory" element={<Inventory />} />
+           <Route path="/admin/inventory/item_Details" element={<ItemDetails />} />     
         </Routes>
       </div>
       <ToastContainer />

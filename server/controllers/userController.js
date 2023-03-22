@@ -146,19 +146,3 @@ export const forgotPassword = async (req, res) => {
     }
 }
 
-
-export const invested_Bikes = async (req, res) => {
-        const { fullName, mobileNo, bikeImage, bikeRc, insurancePaper, pucPaper, modelName, bikeAverage, bikeNumber, aboutBike } = req.body;
-
-        try {
-            const existingBike = await investedBikes.findOne({ bikeNumber });
-            if(existingBike) return res.status(404).json({ message: `bike with number ${bikeNumber} already exist in the inventory` });
-
-            const result = await investedBikes.create({ fullName, mobileNo, bikeImage, bikeRc, insurancePaper, pucPaper, modelName, bikeAverage, bikeNumber, aboutBike }); 
-
-            res.status(200).json({ message: `bike with number ${result.bikeNumber} is successfully added to the inventory`})
-
-        } catch (error) {
-            res.status(500).json({ message: "something went wrong!" });
-        }
-}

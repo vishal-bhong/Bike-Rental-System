@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import FileBase from 'react-file-base64';
@@ -9,43 +9,13 @@ import "./investor_form.css";
 
 const InvestorForm = () => {
 
-    const [ bikeInvestData, setBikeInvestData ] = useState({ fullName: '', mobileNo: '', bikeImage: '', bikeRc: '', insurancePaper: '', pucPaper: '', modelName: '', bikeAverage: '', bikeNumber: '', aboutBike: '', });
-    // const [ emailVerificationData, setEmailVerificationData ] = useState({ isVerifying: true, emailForVerification: '', OTP: '' });
+    const user = JSON.parse(localStorage.getItem("userProfile"));
+    
+    const [ bikeInvestData, setBikeInvestData ] = useState({ fullName: '', mobileNo: '', email: user.result.email, bikeImage: '', bikeRc: '', insurancePaper: '', pucPaper: '', modelName: '', bikeAverage: '', bikeNumber: '', aboutBike: '', });
+    
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     setEmailVerificationData({ ...emailVerificationData, isVerifying: false, OTP: '' })
-    // }, [emailVerificationData.emailForVerification]);
-
-
-    // const handleGetOtp = (e) => {
-    //     e.preventDefault();
-    //     setEmailVerificationData({ ...emailVerificationData, isVerifying: true, OTP: '' });
-
-    //     axios.post('http://localhost:5000/user/generateOtpForEmail', emailVerificationData)
-    //      .then(res =>{
-    //          toast.success(`OTP sent successfully to ${res.data.result}`);                                    
-    //      })
-    //      .catch((err) => {
-    //          console.log(err.message)            
-    //      });
-
-    // }
-
-    // const handleOtpSubmit = (e) => {
-    //     e.preventDefault();
-
-    //     axios.post('http://localhost:5000/user/verifyOtpForEmail', emailVerificationData)
-    //      .then(res =>{
-    //         toast.success(`${res.data.message}`)
-    //         setBikeInvestData({ ...bikeInvestData, email: res.data.result })                    
-    //      })
-    //      .catch((err) => {
-    //          toast.error(`${err.response.data.message}`)
-    //      });
-    // }
-    
     const handleSubmit = (e) => {
         e.preventDefault();          
         dispatch(bikeInvestor(bikeInvestData, navigate));
@@ -54,7 +24,7 @@ const InvestorForm = () => {
 
     const handleClear = () => {
         setBikeInvestData({ fullName: '', email: '', mobileNo: '', bikeImage: '', bikeRc: '', insurancePaper: '', pucPaper: '', modelName: '', bikeAverage: '', bikeNumber: '', aboutBike: '' });
-        // setEmailVerificationData({ isVerifying: true, emailForVerification: '', OTP: '' });
+
     }
 
     return (

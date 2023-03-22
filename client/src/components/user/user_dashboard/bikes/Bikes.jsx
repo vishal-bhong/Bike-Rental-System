@@ -11,10 +11,9 @@ const Bikes = () => {
     const [ bikes, setBikes ] = useState([]);
     const navigate = useNavigate();
 
-    const user = JSON.parse(localStorage.getItem("userProfile"));
 
     useEffect(() => {
-        axios.get('http://localhost:5000/user/getInvestedBikes')
+        axios.get('http://localhost:5000/user/getInventoryBikes')
          .then(res => {
             setBikes(res.data);
             })
