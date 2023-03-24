@@ -14,6 +14,10 @@ const AdminSidebar = () => {
     navigate('/admin/inventory');
   };
 
+  const handleAddBikeNavigation = () =>{
+    navigate('/admin/inventory/add_bike');
+  };
+
   const handleLogoutNavigation = () =>{
     localStorage.removeItem('adminProfile');
     navigate('/admin/login');
@@ -41,6 +45,11 @@ const AdminSidebar = () => {
                       <li className="nav-item pb-3" id="nav-item">
                         <a type="button" onClick={handleInventoryNavigation} data-bs-toggle="collapse" className="nav-link text-truncate"  id="nav-item-name">
                             <i className="bi bi-microsoft h4"></i><span className="ms-3 d-none d-sm-inline h5">Inventory</span> </a>
+                      </li>
+
+                      <li className="nav-item pb-3" id="nav-item">
+                        <a type="button" onClick={handleAddBikeNavigation} data-bs-toggle="collapse" className="nav-link text-truncate"  id="nav-item-name">
+                            <i className="bi bi-microsoft h4"></i><span className="ms-3 d-none d-sm-inline h5">Add Bike</span> </a>
                       </li>
 
                       <li className="nav-item pb-3" id="nav-item">

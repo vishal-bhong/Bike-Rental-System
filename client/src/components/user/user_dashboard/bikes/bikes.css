@@ -25,7 +25,8 @@
 
 
 #bikeimg { 
-    min-height: 170px;       
+
+    min-height: 220px;       
     max-height: 170px;
     max-width: 230px;    
 }
@@ -36,6 +37,15 @@
     width: 13em;
     height:6em;    
     text-overflow: ellipsis;
+}
+
+#cardBody {
+    translate: 0 -45px 0 ;
+}
+
+#bike_modal {
+    height: 400px;
+    width: 500px;
 }
 
 

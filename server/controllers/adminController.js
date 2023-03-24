@@ -94,7 +94,7 @@ export const signupAdmin = async (req, res) => {
     
         const hashedPassword = await bcrypt.hash(password, 12);
     
-        const result = await Admin.create({ email: existingEmailForVerification, mobileNo, address, sec_key, adharCardImage: adharImage, contractPaperImage: contractPaperImage, password: hashedPassword, name: `${firstName} ${lastName}`}); 
+        const result = await Admin.create({ email: existingEmailForVerification.email, mobileNo, address, sec_key, adharCardImage: adharImage, contractPaperImage: contractPaperImage, password: hashedPassword, name: `${firstName} ${lastName}`}); 
        
         res.status(200).json({ message: 'user Signed In successfully...', result });
         

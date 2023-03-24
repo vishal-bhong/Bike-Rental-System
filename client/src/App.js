@@ -12,6 +12,7 @@ import MyOrders from './components/user/user_dashboard/my_orders/MyOrders';
 import InvestorForm from './components/user/Investor_module/investorForm';
 import Inventory from './components/admin/admin_inventory/Inventory';
 import ItemDetails from './components/admin/admin_inventory/inventory_item/item_details/itemDetails';
+import AddBike from './components/admin/admin_inventory/add_bike/addBike';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
            <Route path="/admin/dashboard" element={<AdminDashboard />} />
            <Route path="/admin/inventory" element={<Inventory />} />
            <Route path="/admin/inventory/item_Details" element={<ItemDetails />} />     
+           <Route path="/admin/inventory/add_bike" element={<AddBike />} />     
         </Routes>
       </div>
       <ToastContainer />

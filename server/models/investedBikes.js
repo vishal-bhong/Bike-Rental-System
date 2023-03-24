@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const investedBikesSchema = mongoose.Schema({
     fullName : {type: String, required: true},
-    mobileNo : {type: String, required: true},
+    mobileNo : { type: String },
     email : {type: String, required: true},
     bikeImage: {type: String, required: true},
 

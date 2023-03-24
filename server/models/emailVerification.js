@@ -10,7 +10,7 @@ const emailSchema =  mongoose.Schema({
     expireAt: { type: Date, default: dateIndia },
 })
 
-emailSchema.index( { "expireAt": 1 }, { expireAfterSeconds: 1000 } );
+emailSchema.index( { "expireAt": 1 }, { expireAfterSeconds: 2000 } );
 
 const EmailVerification =  mongoose.model("EmailVerification", emailSchema);
 

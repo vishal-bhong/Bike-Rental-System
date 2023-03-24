@@ -1,6 +1,23 @@
 
 #inventory_page {
     width: 90%;
-    margin: 60px 0 0 65px ;
+    margin: 100px 0 0 65px ;
     min-height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+#adddiv {
+    translate: 410px 495px 2px;
+    position: fixed;
+}
+
+#addButton {
+    width: 400px;
+    height: 38px
+}
+
+#btntext {
+    font-size: 20px;
+    text-shadow: 2px 0 4px;
 }

@@ -1,6 +1,6 @@
 
 #detail_page {
-     margin: 70px 0 0 160px;
+     margin: 100px 0 0 160px;
      width: 75%;
      max-height: auto;
      min-height: 850px;
@@ -51,4 +51,8 @@
 #detailed_image5 {
         transform: scale(0.7);
         translate: -70px -25px;
+}
+
+#staticvalue {
+    width: 50px;
 }
