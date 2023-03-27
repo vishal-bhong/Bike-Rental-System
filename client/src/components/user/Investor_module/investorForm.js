@@ -5,6 +5,8 @@ import FileBase from 'react-file-base64';
 
 import { bikeInvestor } from "../../../actions/userAuth";
 import "./investor_form.css";
+import UserNavbar from "../userBars/userNavbar/UserNavbar";
+import UserSidebar from "../userBars/userSidebar/UserSidebar";
 
 
 const InvestorForm = () => {
@@ -29,6 +31,8 @@ const InvestorForm = () => {
 
     return (
         <>
+            <UserNavbar />
+            <UserSidebar />
             <div className="border border-dark" id="investorform">
             <form className="d-flex flex-column">            
                 <h2 className="fw-bold" id="investformtitle">Bike rent form</h2>

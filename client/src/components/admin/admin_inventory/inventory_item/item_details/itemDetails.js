@@ -27,7 +27,7 @@ const ItemDetails = () => {
           axios.patch(`http://localhost:5000/admin/updateBike/${bike._id}`, formValues)
           .then(res => {
                console.log(res);
-               toast.success(`${res.data.message}`) 
+               toast.success(`${res.data.message}`)
           })
           .catch((err) => {
                    console.log(err);

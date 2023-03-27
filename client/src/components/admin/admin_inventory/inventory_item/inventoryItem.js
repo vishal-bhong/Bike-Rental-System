@@ -33,10 +33,10 @@ const InventoryItem = () => {
                           <>   
                               <div type="button" onClick={handleselection}>
                                   <div className="row" id="rectangular_card">
-                                       <div className="col-2">
+                                       <div className="col-3">
                                           <img  alt="this is bike img" src={bike?.bikeImage} id="bikeimg" />
                                        </div> 
-                                       <div className="col-9">
+                                       <div className="col-7">
                                           <div className="d-flex flex-column my-1">
                                               <span className="ms-0 fs-5 fw-bold">{`Model Name  - ${bike.modelName} `}</span>                        
                                               <span className="ms-0 text-secondary fs-7 fw-bold">{`Owner Name  - ${bike.fullName} `}</span>                        
@@ -45,7 +45,7 @@ const InventoryItem = () => {
                                               <span id='null'>{`Total km with company : ${bike?.totalKMWithCompany} with an average of ${bike?.avgWithCompany} km/lit`}</span>
                                           </div>
                                       </div>
-                                      <div className="col-1" id="verified">
+                                      <div className="col-2" id="verified">
                                         {
                                             bike.verified ? <span className="text-success fw-bold fs-5">verified</span> : <span className="text-danger fw-bold fs-5">Unverified</span>
                                         }

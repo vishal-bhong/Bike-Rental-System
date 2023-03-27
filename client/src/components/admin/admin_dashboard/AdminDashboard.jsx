@@ -1,7 +1,7 @@
 
 import AdminNavbar from '../adminBars/adminNavbar/AdminNavbar';
 import AdminSidebar from '../adminBars/adminSidebar/AdminSidebar';
-import SectionThree from './dashboard_sections/SectionThree.jsx';
+import SectionThree from './dashboard_sections/orderDetails.jsx';
 import Map from './dashboard_sections/Map.jsx';
 import SectionOne from './dashboard_sections/SectionOne';
 

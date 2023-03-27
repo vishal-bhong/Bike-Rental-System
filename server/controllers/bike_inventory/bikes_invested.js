@@ -30,13 +30,14 @@ export const invest_Bikes = async (req, res) => {
 
 export const getBikes_User = async (req, res) => { 
     try {
-        const Bikes = await investedBikes.find({}, 'bikeImage modelName bikeAverage aboutBike');    
+        const Bikes = await investedBikes.find({}, '_id bikeImage modelName avgWithCompany bikeNumber aboutBike totalKMWithCompany');    
 
        res.status(200).json(Bikes);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
 }
+
 
 export const getBikes_Admin = async (req, res) => { 
     try {
