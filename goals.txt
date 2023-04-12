@@ -46,3 +46,10 @@
 
 
 6) binary search / jump search for searching verified bikes in array
+
+
+algorithms used  -  radix sort  ( for sorting based on avg of the bike )
+					bubble sort  ( for sorting based on bikes verified )
+					quick sort  ( for sorting based on total km with company )
+				
+serching algorithms  -  findById() function in Mongoose uses the B-tree index searching algorithm.
