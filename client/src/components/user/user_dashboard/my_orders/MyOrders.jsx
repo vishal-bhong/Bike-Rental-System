@@ -40,13 +40,15 @@ const MyOrders = () => {
                   {
                      orders.map((order) => {
                          return (
-                             <>                               
-                                <span> Bike Model Name : {order.modelName}</span> <br />
-                                <span> mobile no : {order.mobileNo}</span> <br />
-                                <span>Provided email : {order.email}</span> <br /> <br />
-                                <span> Amount Paid : {order.amountPaid}</span> <br />
-                                <br />
-                               <div className='d-flex align-items-center justify-content-center fw-bold rounded' id='statusField'>{order.status}</div> <hr />
+                             <> 
+                                <div key={order._id}>
+                                  <span> Bike Model Name : {order.modelName}</span> <br />
+                                  <span> mobile no : {order.mobileNo}</span> <br />
+                                  <span>Provided email : {order.email}</span> <br /> <br />
+                                  <span> Amount Paid : {order.amountPaid}</span> <br />
+                                  <br />
+                                  <div className='d-flex align-items-center justify-content-center fw-bold rounded' id='statusField'>{order.status}</div> <hr />
+                                </div>                              
                              </>
                          )
                         })

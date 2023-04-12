@@ -55,8 +55,6 @@ export const deleteOrder = async (req, res) => {
 		const { id } = req.params;
 	
 		if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id : ${id}`);
-
-		console.log(id)
 	
 		await Orders.findByIdAndRemove(id);   
 	
@@ -75,6 +73,8 @@ export const getMyOrders = async (req, res) => {
 
      res.status(200).json(userOrders);
 }
+
+
 
 export const updateOrderStatus = async (req, res) => {
     const { id, status } = req.body;
@@ -120,8 +120,6 @@ export const paymentOrder = async (req, res) => {
 export const verifyPayment = async (req, res) => {
 	try {
 		const { response, bikeOrder } = req.body;
-		console.log(response);
-		console.log(bikeOrder);
 
 		const sign = response.razorpay_order_id + "|" + response.razorpay_payment_id;
 
@@ -133,7 +131,6 @@ export const verifyPayment = async (req, res) => {
 		if (response.razorpay_signature === expectedSign) {
 
 			const newOrder = new Orders({ ...bikeOrder });
-			console.log(newOrder);
 			
 			try {
 				await newOrder.save();

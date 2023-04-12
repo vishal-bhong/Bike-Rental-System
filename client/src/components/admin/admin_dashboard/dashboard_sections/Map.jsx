@@ -13,9 +13,10 @@ const Map = () => {
                 width="856"
                 height="350"
                 style={{ border: "0" }}
-                allowfullscreen="false" 
+                allowFullScreen="false" 
                 loading="lazy" 
-                referrerpolicy="no-referrer-when-downgrade"  />
+                referrerPolicy="no-referrer-when-downgrade" 
+                title="Bike rental Map" />
             
           </div>
         </>

@@ -5,6 +5,66 @@ import mongoose from 'mongoose';
 
 
 
+function getDigit(num, place) {
+    return Math.floor(Math.abs(num) / Math.pow(10, place)) % 10
+  }
+
+
+function radixSort_avgWithCompany(arrOfObj) {
+
+    let maxDigitCount = 3;
+
+    for (let k = 0; k < maxDigitCount; k++) {
+      let digitBuckets = Array.from({ length: 10 }, () => []) // [[], [], [],...]
+
+      for (let i = 0; i < arrOfObj.length; i++) {
+        let digit = getDigit(arrOfObj[i].avgWithCompany, k)
+        digitBuckets[digit].push(arrOfObj[i])
+      }
+
+      // New order after each loop
+      digitBuckets.reverse();
+      arrOfObj = [].concat(...digitBuckets)
+    }
+    return arrOfObj;
+};
+
+function Quicksort_totalKMWithCompany(array){
+    if (array.length < 2){
+       return array;
+    }
+    let pivot_element = array[array.length - 1]
+    let left_sub_array = [];
+    let right_sub_array = [];
+    for (let i = 0; i < array.length - 1; i++){
+       if (array[i].totalKMWithCompany < pivot_element.totalKMWithCompany) {
+          left_sub_array.push(array[i])
+       } else {
+          right_sub_array.push(array[i])
+       }
+    }
+    return [...Quicksort_totalKMWithCompany(left_sub_array), pivot_element, ...Quicksort_totalKMWithCompany(right_sub_array)];
+ }
+
+
+function bubbleSort(arr) {
+  
+    for (var i = 0; i < arr.length; i++) {
+  
+        // Last i elements are already in place  
+        for (var j = 0; j < (arr.length - i - 1); j++) {
+
+            if (arr[j].verified == true) {
+                // If the condition is true  then swap them
+                var temp = arr[j]
+                arr[j] = arr[j + 1]
+                arr[j + 1] = temp
+            }
+        }
+    }
+};
+
+
 export const invest_Bikes = async (req, res) => {
     const { fullName, mobileNo, email, bikeImage, bikeRc, insurancePaper, pucPaper, modelName, bikeAverage, bikeNumber, aboutBike } = req.body;
 
@@ -30,20 +90,29 @@ export const invest_Bikes = async (req, res) => {
 
 export const getBikes_User = async (req, res) => { 
     try {
-        const Bikes = await investedBikes.find({}, '_id bikeImage modelName avgWithCompany bikeNumber aboutBike totalKMWithCompany');    
 
-       res.status(200).json(Bikes);
+        const Bikes = await investedBikes.find({}, '_id modelName bikeImage avgWithCompany bikeNumber aboutBike totalKMWithCompany verified');  
+        
+        let filtered_unsorted_bikes = Bikes.filter((bike) => bike.verified == true);
+
+        let filtered_sorted_bikes = radixSort_avgWithCompany(filtered_unsorted_bikes)
+       
+       res.status(200).json(filtered_sorted_bikes);
+
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
 }
 
-
 export const getBikes_Admin = async (req, res) => { 
     try {
-        const Bikes = await investedBikes.find();    
+        const Bikes = await investedBikes.find(); 
 
-       res.status(200).json(Bikes);
+        let sorted_bikes = Quicksort_totalKMWithCompany(Bikes)
+
+        bubbleSort(sorted_bikes);
+
+       res.status(200).json(sorted_bikes);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }

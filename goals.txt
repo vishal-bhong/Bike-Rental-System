@@ -37,3 +37,12 @@
 ( algorithms can be used to sort the bikes based on the history with company to show on client side ) - server side 
 
 ( use algorithm to filter the bikes based on previous bookings by the user, use values like bike brand, bike avg, bike power )  -  server side
+
+
+5) merge sort / heap sort - best in the worst case situation
+		 radix sort  recently has resurfaced as an alternative to other high performance comparison-based sorting algorithms for integer keys 
+		 and short strings because unlike Heapsort and Mergesort it does not use comparisons and can utilize modern CPUs much better then
+		 traditional comparison based algorithms. 
+
+
+6) binary search / jump search for searching verified bikes in array

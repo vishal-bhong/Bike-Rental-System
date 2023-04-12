@@ -1,18 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+
 import { HiUserCircle, HiOutlineMail } from "react-icons/hi";
 import { BsTelephone } from "react-icons/bs";
 import { RiMotorbikeFill } from "react-icons/ri";
 
 import { toast } from 'react-toastify'
 
-
 import './orderDetails.css';
 
 
-const SectionThree = () => {
+const OrderDetails = () => {
     const [ allOrders, setAllOrders ] = useState([]);
-    const [ orderDetails, setOrderDetails ] = useState([]);
+    const [ orderDetails, setOrderDetails ] = useState([ {_doc: null},  ]);
+    const navigate = useNavigate();
 
     useEffect(() => {
       axios.get(`http://localhost:5000/admin/get_orders`)
@@ -25,9 +27,20 @@ const SectionThree = () => {
     },[]);
 
     const handleOrderDelete = (order) => {
-      axios.delete(`http://localhost:5000/admin/deleteOrder/${orderDetails._id}`)
+      axios.delete(`http://localhost:5000/admin/deleteOrder/${orderDetails?._doc._id}`)
        .then((res) => toast.success(res.data.message) )
        .catch((err) => console.log(err))
+    }
+
+    const handleStatus = (id, status) => {
+      axios.post('http://localhost:5000/admin/update_order_status', { id, status })
+        .then((res) => {                       
+           toast.success(res.data.message);
+           navigate('/admin/dashboard')
+          })
+        .catch((err) => {
+           console.log(err);                                           
+        })
     }
 
     return (
@@ -50,20 +63,16 @@ const SectionThree = () => {
                             }
                             
                             const handleOpenModal = () => {
-                              console.log(order.userId)
-                              console.log(order._id)
-                              console.log(order.bikeId)
                              axios.get(`http://localhost:5000/admin/get/orderDetails/${order._id}/${order.userId}/${order.bikeId}`)
                               .then((res) => setOrderDetails(res.data) )
                               .catch((err) => console.log(err))
 
-                              console.log(orderDetails)
                            }
 
                          return (
                              <>  
-                              <div data-bs-toggle="modal" data-bs-target="#orderdetails" onClick={handleOpenModal}>
-                                <div className='row'>
+                              <div>
+                                <div className='row' data-bs-toggle="modal" data-bs-target="#orderdetails" onClick={handleOpenModal}>
                                    <div className='col-1'>
                                      <h2 id='userIcon'> <HiUserCircle /> </h2>
                                    </div>
@@ -74,7 +83,7 @@ const SectionThree = () => {
                                    </div>
                                 </div> 
 
-                                <div className='row mt-3'>
+                                <div className='row mt-3' data-bs-toggle="modal" data-bs-target="#orderdetails" onClick={handleOpenModal}>
                                   <div className='col-1'>
                                     <h2><RiMotorbikeFill /></h2>
                                   </div>
@@ -115,24 +124,50 @@ const SectionThree = () => {
                               <div className='col-1'>
                                 <h2 id='userIcon'> <HiUserCircle /> </h2>
                               </div>
-                              <div className='col-7 pt-1'>
-                                <span className='fs-4'>{orderDetails._doc.fullName} </span> <br />  
-                                <span> <BsTelephone /> {orderDetails._doc.mobileNo} </span> <br />
-                                <span> <HiOutlineMail /> {orderDetails._doc.email}</span> <br />
+                              <div className='col-11 pt-1'>
+                                <span className='fs-4'>{orderDetails?._doc?.fullName} </span> <br />  
+                                <span> <BsTelephone /> {orderDetails?._doc?.mobileNo} </span> <br />
+                                <span> <HiOutlineMail /> {orderDetails?._doc?.email}</span> <br />
                               </div>
-                              <div className='col-4'>
-                                <span>Adhar Image :</span>
-                                <img  alt="this is bike image" src={orderDetails?.adharCardImage} className="card-img-top" id="bikeimg" />
-                                <img  alt="this is bike image" src={orderDetails?.bikeImage} className="card-img-top" id="bikeimg" />
+                            </div>
+                              <div className='row mt-5'>
+                                <div className='col-6'>
+                                  <span>Adhar Image :</span>
+                                  <img  alt="this is bike image" src={orderDetails?.adharCardImage} className="card-img-top mt-2" id="bikeimg" />
+                                </div>
+                                <div className='col-6'>
+                                  <span>driving license :</span>
+                                  <img  alt="this is bike image" src={orderDetails?.drivingLicenseImage} className="card-img-top mt-2" id="bikeimg" />
+                                </div>
                               </div>
-                            <span className='text-dark fw-semibold fs-3'>{`${orderDetails?.modelName}`}</span>
-                            <span className='text-secondary fw-bold'>{`Bike average: ${orderDetails?.avgWithCompany} km/lit`}</span>
-                            <span className='text-secondary fw-bold'>{`total km with company:  ${orderDetails?.totalKMWithCompany} km`}</span>
-                            <span className='text-secondary'>&nbsp; &nbsp; &nbsp;{`${orderDetails?.aboutBike}`}</span>
+
+                              <div className='row mt-2'>
+                                <div className='col-6 '>
+                                  <span className='fw-bold ms-2 fs-4'>{`${orderDetails?._doc?.modelName}`}</span>
+                                  <img  alt="this is bike image" src={orderDetails?.bikeImage} className="card-img-top mt-2" id="bikeimg" />
+                                </div>
+                                <div className='d-flex flex-column col-6 justify-content-end mb-5 pb-4'>
+                                  <span>Bike number : </span>
+                                  <span className='fs-4'>{`${orderDetails?._doc?.bikeNumber}`}</span>
+                                </div>
+                              </div>
+                            <span className='text-dark fw-semibold fs-5'>{`amount paid - Rs. ${orderDetails?._doc?.amountPaid}`}</span> <br />
+                            <div className="dropend mt-3">
+                                <span className='text-dark fw-bold fs-5 pe-3'>{`Status : `}</span>
+                                <button type="button" id='statusDisplayButton' className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                  {orderDetails?._doc?.status}&nbsp;
+                                </button>
+                                <ul className="dropdown-menu" key='status'>
+                                  <li type='button' key='booked'  className='ps-3 pb-1 border-bottom' onClick={() => handleStatus(orderDetails?._doc?._id, 'booked')}>Booked</li>
+                                  <li type='button' key='claimed' className='ps-3 py-1 border-bottom' onClick={() => handleStatus(orderDetails?._doc?._id, 'claimed')}>claimed</li>
+                                  <li type='button' key='returned' className='ps-3 py-1 border-bottom' onClick={() => handleStatus(orderDetails?._doc?._id, 'returned')}>returned</li>
+                                  <li type='button' key='Rejected' className='ps-3 py-1 bg-danger text-white' onClick={() => handleStatus(orderDetails?._doc?._id, 'Rejected')}>Rejected</li>
+                                </ul>
+                            </div>
+
                             <div className='d-flex justify-content-end mt-5'>
                               <button className='btn btn-outline-primary fw-bold' onClick={handleOrderDelete}>&nbsp; Delete &nbsp;</button>
                             </div>
-                          </div>
                       </div>
                  </div>
               </div>
@@ -141,4 +176,4 @@ const SectionThree = () => {
     )
 }
 
-export default SectionThree;
+export default OrderDetails;
