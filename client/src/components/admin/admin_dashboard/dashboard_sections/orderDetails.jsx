@@ -14,9 +14,25 @@ import './orderDetails.css';
 const OrderDetails = () => {
     const [ allOrders, setAllOrders ] = useState([]);
     const [ orderDetails, setOrderDetails ] = useState([ {_doc: null},  ]);
+    const [ coords, setCoords ] = useState({})
     const navigate = useNavigate();
 
+
+    const longPollingRequest = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/admin/getCoordinates');
+        setCoords(response.data);
+  
+        // Initiate the next long polling request
+        longPollingRequest();
+      } catch (error) {
+        console.error(error);
+        longPollingRequest();
+      }
+    };
+
     useEffect(() => {
+      longPollingRequest();
       axios.get(`http://localhost:5000/admin/get_orders`)
       .then((res) => {
         setAllOrders(res.data)
@@ -90,6 +106,15 @@ const OrderDetails = () => {
                                   <div className='col-11 pt-2'>
                                      <span className='fs-5 ps-2'> {order.modelName}</span> <br />
                                      <span className='ps-3'>Bike No : {order.bikeNumber}</span> <br />
+                                   {
+                                    order.status == 'claimed' ? (
+                                      <>
+                                        <span className='ps-3'>latitude : {coords?.latitude}</span> <br />
+                                        <span className='ps-3'>longitude : {coords?.longitude}</span> <br />
+                                      </>
+                                    ) : (<></>)
+                                   }
+                                      
                                   </div>
                                 </div> 
 

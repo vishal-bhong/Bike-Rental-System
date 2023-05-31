@@ -1,10 +1,14 @@
 import express from "express";
 import { loginAdmin, signupAdmin, generateOtpForEmail, verifyOtpForEmail, forgotPassword } from "../controllers/adminController.js";
 import { admin_Add_Bike, deleteBike, getBikes_Admin, updateBike } from "../controllers/bike_inventory/bikes_invested.js";
-import { deleteOrder, getOrderDetails, getOrders, updateOrderStatus } from "../controllers/ordersController.js";
+import { deleteOrder, getCoordinates, getOrderDetails, getOrders, postCoordinates, updateOrderStatus } from "../controllers/ordersController.js";
 
  
 const router = express.Router();
+
+router.post('/postCoordinates', postCoordinates);
+router.get('/getCoordinates', getCoordinates);
+
 
 router.get('/getInventoryBikes', getBikes_Admin)
 router.post('/addBike', admin_Add_Bike);

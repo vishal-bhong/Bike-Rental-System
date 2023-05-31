@@ -19,6 +19,41 @@ let transporter = nodemailer.createTransport({
     },
   });
 
+let latitude = 0;
+let longitude = 0;
+
+export const getCoordinates = async (req, res) => {
+	try {
+		res.send({ latitude, longitude });
+		// const timeout = 6 * 1000;
+		// const checkData = () => {
+		// 	if (latitude !== 0 || longitude !== 0) {
+		// 	  latitude = 0; // Clear the data after sending
+		// 	  longitude = 0; // Clear the data after sending
+		// 	} else {
+		// 	  setTimeout(checkData, timeout);
+		// 	}
+		//   };
+		
+		// checkData();
+	} catch (error) {
+		res.status(404).json({ message: error.message });
+	}
+};
+
+export const postCoordinates = async (req, res) => {
+	try {
+		latitude  = req.body.latitude;
+		longitude  = req.body.longitude;
+
+		console.log(latitude,longitude);
+
+		res.send('Data updated successfully');
+		
+	} catch (error) {	
+		res.status(404).json({ message: error.message });
+		}
+};
 
 export const getOrders = async (req, res) => { 
     try {
